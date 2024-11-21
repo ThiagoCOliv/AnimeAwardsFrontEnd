@@ -5,8 +5,7 @@ Este é um projeto feito para exercício pessoal de desenvolvimento utilizando o
 ## Funcionalidades
 
 - **Exibição de categorias de prêmios**: O projeto lista várias categorias de prêmios (como Melhor Anime, Melhor Personagem, etc.).
-- **Sistema de votação**: Usuários podem votar nos animes favoritos de cada categoria.
-- **Contagem de votos**: O sistema exibe a contagem atual dos votos para cada anime.
+- **Sistema de Pontuação**: O sistema exibe a pontuação atual de para cada anime.
 - **Interface simples e responsiva**: A interface foi projetada para ser simples e adaptável a diferentes dispositivos.
 
 ## Tecnologias Utilizadas
