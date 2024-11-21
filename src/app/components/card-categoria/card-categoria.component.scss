@@ -1,0 +1,13 @@
+.card-categoria{
+    border: 2px solid var(--cor-primaria);
+    border-radius: var(--espacamento);
+    padding: var(--espacamento);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover{
+        background: linear-gradient(30deg, transparent 25%, var(--cor-primaria));
+    }
+}

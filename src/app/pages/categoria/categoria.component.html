@@ -1,0 +1,76 @@
+@if (categoria) {
+    <h1>
+        {{ categoria.nome }}
+        @if(podeAddManualmente)
+        {
+            <button class="btn-add-indicado" (click)="abrirModalAddIndicado()">+</button>
+        }
+    </h1>
+    <ul class="lista-indicados">
+        @for(indicado of indicados; track $index)
+        {
+            <li>
+                <span class="posicao">{{ $index + 1 }}</span>
+                <div class="indicado">
+                    @if (categoria.tipo == "Personagens") 
+                    {
+                        @if(categoria.nome == "Melhor Casal") { 
+                            <div class="personagem casal">
+                                <div>
+                                    <img [src]="indicado.imagemA">
+                                    <img [src]="indicado.imagemB">
+                                </div>
+                                <span>{{ indicado.casal }}</span>
+                            </div>
+                        }
+                        @else {
+                            <div class="personagem">
+                                <img [src]="indicado.imagem">
+                                <span>{{ indicado.personagem }}</span>
+                            </div>
+                        }
+                    }
+
+                    <div class="anime">
+                        <img [src]="indicado.anime.imagemURL">
+                        <span>
+                            {{ indicado.anime.nome }}
+                            @if (categoria.tipo == "Subjetivas" && (categoria.nome == "Melhor Encerramento" || categoria.nome == "Melhor Abertura")) 
+                            {
+                                - Nº{{indicado.numero}}
+                            }
+                        </span>
+                    </div>
+                </div>
+ 
+                <div class="botoes">
+                    @if ($index != 0) {
+                        <button class="subir" (click)="onSubir($index)"></button>
+                    }
+                    @if ($index < categoria.indicados.length -1) {
+                        <button class="descer" (click)="onDescer($index)"></button>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+@if (alteracao) 
+{
+    <div class="btn-editar-div">
+        @if (mensagem) {
+            <span [className]="statusRequisicao">{{ mensagem }}</span>
+        }
+        @else {
+            <button class="btn-editar" (click)="onEditar()">EDITAR</button>
+        }
+    </div>
+}
+
+@if(modalAberto)
+{
+    <dialog open>
+        <app-modal-indicado [categoria]="categoria" (adicionar)="addIndicado($event)"></app-modal-indicado>
+    </dialog>
+}

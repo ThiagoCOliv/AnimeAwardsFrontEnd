@@ -1,0 +1,41 @@
+<nav class="menu">
+  <ul>
+    <a routerLink="/">
+      <li>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 10.5L12 3L21 10.5V21C21 21.5523 20.5523 22 20 22H15C14.4477 22 14 21.5523 14 21V15H10V21C10 21.5523 9.55228 22 9 22H4C3.44772 22 3 21.5523 3 21V10.5Z" fill="#fff"/>
+        </svg>
+        <span>Home</span>
+      </li>
+    </a>
+    <a routerLink="/animes">
+      <li>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="20" height="6" fill="#000000" />
+          <path d="M3 3L5 1H9L7 3H3ZM10 3L12 1H16L14 3H10ZM17 3L19 1H21L19 3H17Z" fill="#ffffff" />
+          <rect x="2" y="9" width="20" height="12" fill="#333333" />
+          <rect x="3" y="10" width="18" height="2" fill="#ffffff" />
+          <rect x="3" y="14" width="18" height="2" fill="#ffffff" />
+          <rect x="3" y="18" width="18" height="2" fill="#ffffff" />
+        </svg>        
+        <span>Animes</span>
+      </li>
+    </a>
+    <a routerLink="/categorias">
+      <li>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="4" cy="6" r="2" fill="#fff" />
+          <rect x="8" y="5" width="14" height="2" fill="#fff" />
+          <circle cx="4" cy="12" r="2" fill="#fff" />
+          <rect x="8" y="11" width="14" height="2" fill="#fff" />
+          <circle cx="4" cy="18" r="2" fill="#fff" />
+          <rect x="8" y="17" width="14" height="2" fill="#fff" />
+        </svg>
+        <span>Categorias</span>
+      </li>
+    </a>
+  </ul>
+</nav>
+<main>
+  <router-outlet />
+</main>

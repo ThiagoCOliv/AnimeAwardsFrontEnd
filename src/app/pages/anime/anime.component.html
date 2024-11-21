@@ -1,0 +1,32 @@
+@if (anime) {
+    <div class="anime-page">
+        <img [src]="anime.imagemURL"/>
+        <div class="anime-info">
+            <h1>{{ anime.nome }} <span>#{{ anime.id }}</span></h1>
+            <ul>
+                <li>Temporada: <span>{{ anime.temporadaAnime }}</span></li>
+                <li>Lançamento: <span>{{ anime.temporadaLancamento }}</span></li>
+                <li>
+                    @if (anime.estudio.length > 1) {Estudios: }
+                    @else {Estudio: }
+                    <span>{{ anime.estudio.join(' - ') }}</span>
+                </li>
+                <li>
+                    @if (anime.generos.length > 1) {Gêneros: }
+                    @else {Gênero: }
+                    <span>{{ anime.generos.join(' - ') }}</span>
+                </li>
+                <li>Fonte: <span>{{ anime.fonte }}</span></li>
+            </ul>
+            <div class="botoes">
+                <button (click)="onEdit()">
+                    <span>EDITAR</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9M16 4l4 4-9 9H7v-4l9-9z" />
+                    </svg>
+                  </button>
+                <button class="excluir"><span>EXCLUIR</span></button>
+            </div>
+        </div>
+    </div>
+}

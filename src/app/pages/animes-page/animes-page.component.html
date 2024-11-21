@@ -1,0 +1,14 @@
+<div>
+    <h1 class="titulo-pagina">Animes</h1>
+    <button (click)="onAdd()">+</button>
+    <app-select label="Generos:" [opcoes]="generos" (search)="buscarPorGenero($event)"></app-select>
+</div>
+<ul class="lista-animes">
+    @for (anime of animes; track anime.id)
+    {
+        <li class="anime-card"><app-card-anime [anime]="anime" [pagina]="'animes'"></app-card-anime></li>
+    }
+    @empty {
+        <li class="lista-vazia">Não foram encontrados animes :(</li>
+    }
+</ul>

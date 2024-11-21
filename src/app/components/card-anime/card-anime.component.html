@@ -1,0 +1,8 @@
+<div class="card-anime" (click)="onClick()">
+    @if(pagina == "topAnimes"){
+        <span>{{ anime.pontos }} pts</span>
+    }
+    
+    <img [src]="anime.imagemURL"/>
+    <h2>{{ anime.nome }}</h2>
+</div>

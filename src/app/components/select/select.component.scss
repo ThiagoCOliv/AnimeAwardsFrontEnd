@@ -1,0 +1,46 @@
+div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    & .select{
+        width:100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--espacamento);
+        border: 2px solid var(--cor-primaria);
+        padding: var(--espacamento);
+        border-radius: var(--espacamento);
+        font-size: var(--font-size-standart);
+
+        &  .search{
+            background: var(--cor-hover-2);
+            flex:1;
+            max-width: min(100%, 400px);
+
+            & input{
+                flex:1;
+                padding: calc(var(--espacamento) * 0.5);
+                width: 250px;
+                outline: none;
+                border: none;
+                background: #0000;
+                font-size: calc(var(--font-size-standart) * 0.75);
+            }
+    
+            & .btnSubmit{
+                background: #0000;
+                transition: 0.3s ease;
+                border:none;
+                height: 100%;
+                padding: calc(var(--espacamento) * 0.5);
+    
+                &:hover{
+                    background: var(--cor-primaria);
+                }
+            }
+        }
+    }
+}

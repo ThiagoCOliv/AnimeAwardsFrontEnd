@@ -1,0 +1,105 @@
+.anime-page{
+    display: flex;
+    gap: var(--espacamento);
+
+    & img{
+        width: 20%;
+        min-width: 200px;
+        max-width: 350px;
+        height: fit-content;
+    }
+
+    & .anime-info{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--espacamento);
+
+        & h1{
+            font-size: calc(var(--font-size-standart) * 2);
+
+            & span{
+                color: var(--cor-primaria);
+            }
+        }
+
+        & ul{
+            list-style: none;
+            font-size: var(--font-size-standart);
+
+            & li{
+                padding: var(--espacamento);
+                border-bottom: 2px solid #fff;
+                display: flex;
+                flex-wrap: wrap;
+                gap: calc(var(--espacamento) * 0.5);
+            }
+        }
+
+        & .botoes{
+            display: flex;
+            gap: var(--espacamento);
+            justify-content: flex-end;
+            flex-wrap: wrap;
+
+            & button{
+                width: 200px;
+                padding: calc(var(--espacamento) * 0.5) var(--espacamento);
+                background: var(--cor-hover-2);
+                border: none;
+                outline: none;
+                font-weight: bold;
+                font-size: calc(var(--font-size-standart) * 0.8);
+                transition: 0.3s ease;
+                display: flex;
+                justify-content: center;
+                gap: calc(var(--espacamento) * 0.5);
+                align-items: center;
+
+                &:hover, &:focus{
+                    background: var(--cor-primaria);
+                }
+
+                &.excluir::after{
+                    content: 'X';
+                    padding: calc(var(--espacamento) * 0.2);
+                    width: var(--espacamento);
+                    border: 2px solid #fff;
+                    border-radius: 50%;
+                    aspect-ratio: 1;
+                    font-size: calc(var(--font-size-standart) * 0.5);
+                    align-content: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .anime-page{
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            width: 30%;
+        }
+
+        & .anime-info{
+            width: 100%;
+
+            h1{
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .anime-page .anime-info .botoes button{
+        width: fit-content;
+
+        span{
+            display: none;
+        }
+    }
+}

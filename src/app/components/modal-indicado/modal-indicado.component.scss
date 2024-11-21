@@ -1,0 +1,107 @@
+form{
+    .anime-select{
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        grid-template-rows: 3fr 1fr;
+        align-items: end;
+        gap: var(--espacamento);
+        font-size: var(--font-size-standart);
+        width: 100%;
+
+        img{
+            grid-row: span 2;
+            max-width: 225px;
+        }
+
+        select{
+            padding: calc(var(--espacamento) * 0.5);
+            font-size: var(--font-size-standart);
+            width: 100%;
+        }
+    }
+
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        margin: var(--espacamento) 0;
+        font-size: var(--font-size-standart);
+        gap: calc(var(--espacamento) * 0.5);
+        width: 100%;
+
+        input{
+            flex-grow: 1;
+            font-size: var(--font-size-standart);
+            padding: calc(var(--espacamento) * 0.5);
+        }
+    }
+
+    .group-personagem{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin: var(--espacamento) 0;
+        gap: calc(var(--espacamento) * 0.5);
+
+
+        .form-group-img{
+            grid-row: span 2;
+            display: flex;
+            justify-content: flex-end;
+
+            img{
+                width: 200px;
+            }
+        }
+    }
+}
+
+.btns{
+    display: flex;
+    gap: calc(var(--espacamento) * 0.5);
+
+    .btn{
+        padding: calc(var(--espacamento) * 0.5);
+        background: var(--cor-primaria);
+        font-size: var(--font-size-standart);
+        border: none;
+        transition: 0.3s ease;
+        cursor: pointer;
+    
+        &.cancel{
+            background: var(--cor-hover-2);
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    form {
+        .anime-select{
+            margin-top: var(--espacamento);
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 5fr 1fr 1fr;
+            gap: 0;
+
+            img{
+                grid-row: 1;
+                grid-column: 2;
+            }
+
+            label{
+                grid-row: 2;
+            }
+
+            label, select{
+                grid-column: span 3;
+            }
+        }
+
+        .group-personagem{
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+
+            .form-group-img{
+                margin: auto;
+            }
+        }
+    }
+}

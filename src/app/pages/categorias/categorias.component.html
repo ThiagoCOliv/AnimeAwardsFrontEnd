@@ -1,0 +1,13 @@
+<div>
+    <h1 class="titulo-pagina">Categorias</h1>
+    <app-select label="Tipos:" [opcoes]="tipos()" (search)="buscarPorTipo($event)"></app-select>
+</div>
+<ul class="lista-categorias">
+    @for (categoria of categorias; track $index)
+    {
+        <li class="anime-card"><app-card-categoria [categoria]="categoria.nome" (click)="showCategoria(categoria.nome)"></app-card-categoria></li>
+    }
+    @empty {
+        <li class="lista-vazia">Não foram encontradas categorias :(</li>
+    }
+</ul>

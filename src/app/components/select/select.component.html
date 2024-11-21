@@ -1,0 +1,19 @@
+<div>
+    <form class="select" [formGroup]="form" (submit)="onSubmit()">
+        <label for="list">{{ label }}</label>
+        <div class="search">
+            <input type="text" list="my-list" [formControl]="form.controls.label">
+            <datalist id="my-list">
+                @for (opcao of opcoes; track $index) {
+                    <option [value]="opcao"></option>
+                }
+            </datalist>
+            <button type="submit" class="btnSubmit" aria-label="Buscar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+.titulo-pagina{
+    font-size: calc(var(--font-size-standart) * 2);
+    margin-bottom: var(--espacamento);
+}
+
+.lista-animes{
+    list-style: none;
+    font-size: calc(var(--font-size-standart) * 0.75);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
+    gap: var(--espacamento);
+    margin: auto;
+
+    & li{
+        min-width: 250px;
+    }
+}
+
+@media screen and (max-width: 1300px){
+    .lista-animes{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .lista-animes{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px){
+    .titulo-pagina{
+        font-size: calc(var(--font-size-standart) * 1.5);
+    }
+    
+    .lista-animes{
+        grid-template-columns: 1fr;
+
+        & li{
+            width: 350px;
+            margin-inline: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 420px){
+    .titulo-pagina{
+        font-size: calc(var(--font-size-standart) * 1.2);
+    }
+    
+    .lista-animes{
+        & li{
+            width: calc(100vw - var(--espacamento) * 4);
+        }
+    }
+}

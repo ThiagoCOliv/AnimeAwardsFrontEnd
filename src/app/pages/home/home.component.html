@@ -1,0 +1,10 @@
+<h1 class="titulo-pagina">Melhores do Ano</h1>
+<ul class="lista-animes">
+    @for (anime of animes; track anime.id) 
+    {
+        <li class="anime-card"><app-card-anime [anime]="anime" [pagina]="'topAnimes'"></app-card-anime></li>
+    }
+    @empty {
+        <li class="lista-vazia">Não foram encontrados animes :(</li>
+    }
+</ul>

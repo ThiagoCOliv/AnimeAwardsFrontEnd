@@ -1,0 +1,54 @@
+<h1>Adicionar Indicado</h1>
+<form [formGroup]="form" (submit)="onSubmit()">
+    <div class="anime-select">
+        <label for="anime">Anime: </label>
+        @if(animeSelecionado){ <img [src]="animeSelecionado.imagemURL" [alt]="animeSelecionado.nome"> }
+        <select name="anime" [formControl]="form.controls.anime" (change)="animeEscolhido()">
+            @for(anime of animesSelecionaveis; track $index)
+            {
+                <option [value]="anime.nome">{{ anime.nome }}</option>
+            }
+        </select>
+    </div>
+    @if(categoria.tipo == "Subjetivas")
+    {
+        <div class="form-group">
+            <label for="numero">Nº:</label>
+            <input name="numero" type="number" min="1" [formControl]="form.controls.numero">
+        </div>
+    }
+    @else 
+    {
+        <div class="group-personagem">
+            <div class="form-group">
+                <label for="personagemA">Personagem 1:</label>
+                <input name="personagemA" [formControl]="form.controls.personagemA">
+            </div>
+            <div class="form-group-img"><img [src]="form.controls.personagemAImg.value" [alt]="form.controls.personagemA.value"></div>
+            <div class="form-group">
+                <label for="personagemA-img">Imagem URL:</label>
+                <input name="personagemA-img" [formControl]="form.controls.personagemAImg">
+            </div>
+        </div>
+        
+        @if(categoria.nome == "Melhor Casal")
+        {
+            <div class="group-personagem">
+                <div class="form-group">
+                    <label for="personagemB">Personagem 2:</label>
+                    <input name="personagemB" [formControl]="form.controls.personagemB">
+                </div>
+                <div class="form-group-img"><img [src]="form.controls.personagemBImg.value" [alt]="form.controls.personagemB.value"></div>
+                <div class="form-group">
+                    <label for="personagemB-img">Imagem URL:</label>
+                    <input name="personagemB-img" [formControl]="form.controls.personagemBImg">
+                </div>
+            </div>
+        }
+    }
+    
+</form>
+<div class="btns">
+    <button class="btn" type="submit" (click)="onSubmit()">Enviar</button>
+    <button class="btn cancel" (click)="cancelarIndicacao('cancel')">Cancelar</button>
+</div>

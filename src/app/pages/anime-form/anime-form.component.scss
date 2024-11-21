@@ -1,0 +1,150 @@
+section{
+    display: flex;
+    gap: var(--espacamento);
+    align-items: flex-start;
+
+    img{
+        width:300px;
+        min-width: 200px;
+        max-width: 350px;
+    }
+
+    form{
+        flex-grow: 1;
+
+        .form-group{
+            font-size: var(--font-size-standart);
+            padding: var(--espacamento);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--espacamento);
+            border-bottom: 2px solid var(--cor-branca);
+
+            input{
+                padding: calc(var(--espacamento) * 0.5);
+                width: 100%;
+                font-size: var(--font-size-standart);
+                border: none;
+                outline: none;
+                background: var(--cor-hover-2);
+            }
+
+            .input-add{
+                background: var(--cor-hover-2);
+                padding: calc(var(--espacamento) * 0.5);
+                min-width: 350px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                gap: var(--espacamento);
+
+                input{
+                    background: transparent;
+                    padding: 0;
+                    text-transform: uppercase;
+                }
+
+                .add{
+                    margin-top: 0;
+                    padding: calc(var(--espacamento) * 0.25) calc(var(--espacamento) * 0.5);
+
+                    &:hover{
+                        background: var(--cor-hover);
+                    }
+                }
+            }
+
+            .lista-linha{
+                display: flex;
+                align-items: center;
+                gap: calc(var(--espacamento) * 0.5);
+                flex-wrap: wrap;
+
+                span{
+                    background: var(--cor-hover-2);
+                    padding: calc(var(--espacamento) * 0.5);
+                    font-size: calc(var(--font-size-standart) * 0.5);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: calc(var(--espacamento) * 0.5);
+                    text-transform: uppercase;
+                    cursor: pointer;
+    
+                    &::after{
+                        content: 'x';
+                        font-size: calc(var(--espacamento) * 0.5);
+                        transition: 0.3s ease;
+                    }
+
+                    &:hover{
+                        backdrop-filter: blur(5px);
+
+                        &::after{
+                            text-shadow: 0 0 15px var(--cor-branca);
+                            color: var(--cor-primaria);
+                            font-size: calc(var(--font-size-standart) * 0.7);
+                        }
+                    } 
+                }
+            }
+        }
+
+        .add{
+            padding: calc(var(--espacamento) * 0.5) var(--espacamento);
+            background: var(--cor-primaria);
+            font-size: var(--font-size-standart);
+            margin-top: var(--espacamento);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s ease;
+
+            &:hover{
+                background: var(--cor-hover-2);
+            }
+        }
+    }
+}
+
+dialog{
+    position: absolute;
+    top: var(--espacamento);
+    right: var(--espacamento);
+    padding: var(--espacamento);
+    font-size: var(--font-size-standart);
+    border: var(--tamanho-borda) solid;
+    background: var(--cor-hover-2);
+
+    &.sucesso{
+        border-color: var(--cor-sucesso);
+    }
+
+    &.erro{
+        border-color: var(--cor-primaria);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    section{
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            width: 30%;
+        }
+
+        & form{
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    section form{
+        width: 90vw;
+    }
+}

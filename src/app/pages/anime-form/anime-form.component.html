@@ -1,0 +1,76 @@
+<section>
+    @if (form.controls.imagem.value) {
+        <img [src]="form.controls.imagem.value">
+    }
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" [formControl]="form.controls.nome">
+        </div>
+    
+        <div class="form-group">
+            <label for="imgURL">Imagem URL:</label>
+            <input type="text" name="imgURL" [formControl]="form.controls.imagem">
+        </div>
+
+        @if(funcaoPagina == "Adicionar")
+        {
+            <div class="form-group">
+                <label for="lancamento">Temporada Lançamento:</label>
+                <input type="text" name="lancamento" [formControl]="formList.controls.lancamento">
+            </div>
+            @if(lancamento){
+                <div class="lista-linha">
+                    @for (temporada of lancamento; track $index) {
+                        <span (click)="deleteTemporada(temporada)">{{ temporada }}</span>
+                    }
+                </div>
+            }
+        }
+        
+        <div class="form-group">
+            <label for="temporada">Temporada:</label>
+            <input type="number" name="temporada" [formControl]="form.controls.temporada">
+        </div>
+        
+        <div class="form-group">
+            <label for="estudios">Estúdios:</label>
+            <div class="input-add">
+                <input type="text" name="estudios" [formControl]="formList.controls.estudio">
+                <span class="add" (click)="addEstudio()">+</span>
+            </div>
+            @if(estudios){
+                <div class="lista-linha">
+                    @for (estudio of estudios; track $index) {
+                        <span (click)="deleteEstudio(estudio)">{{ estudio }}</span>
+                    }
+                </div>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="generos">Genêros:</label>
+            <div class="input-add">
+                <input type="text" name="generos" [formControl]="formList.controls.genero">
+                <span class="add" (click)="addGenero()">+</span>
+            </div>
+            @if(generos){
+                <div class="lista-linha">
+                    @for (genero of generos; track $index) {
+                        <span (click)="deleteGenero(genero)">{{ genero }}</span>
+                    }
+                </div>
+            }
+        </div>
+        
+        <div class="form-group">
+            <label for="fonte">Fonte:</label>
+            <input type="text" name="fonte" [formControl]="form.controls.fonte">
+        </div>
+    
+        <input class="add" type="submit" [value]="funcaoPagina">
+    </form>
+</section>
+<dialog [class]="statusRequisicao">
+    {{ mensagem }}
+</dialog>
