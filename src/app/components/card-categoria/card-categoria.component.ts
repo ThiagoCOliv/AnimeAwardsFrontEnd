@@ -1,4 +1,5 @@
 import { Component, Input, output } from '@angular/core';
+import { Categoria } from '../../interfaces/categoria.interface';
 
 @Component({
   selector: 'app-card-categoria',
@@ -7,8 +8,8 @@ import { Component, Input, output } from '@angular/core';
   templateUrl: './card-categoria.component.html',
   styleUrl: './card-categoria.component.scss'
 })
-export class CardCategoriaComponent {
-  @Input() categoria: string = "";
+export class CardCategoriaComponent{
+  @Input() categoria?: Categoria;
 
   click = output();
 

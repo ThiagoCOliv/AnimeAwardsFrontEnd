@@ -5,7 +5,7 @@
 <ul class="lista-categorias">
     @for (categoria of categorias; track $index)
     {
-        <li class="anime-card"><app-card-categoria [categoria]="categoria.nome" (click)="showCategoria(categoria.nome)"></app-card-categoria></li>
+        <li class="anime-card"><app-card-categoria [categoria]="categoria" (click)="showCategoria(categoria.nome)"></app-card-categoria></li>
     }
     @empty {
         <li class="lista-vazia">Não foram encontradas categorias :(</li>

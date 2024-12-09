@@ -4,10 +4,28 @@
     padding: var(--espacamento);
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--espacamento);
     align-items: center;
+    text-align: center;
     cursor: pointer;
 
     &:hover{
         background: linear-gradient(30deg, transparent 25%, var(--cor-primaria));
+    }
+
+    img{
+        width: clamp(200px, 50%, 100%);
+    }
+
+    .casal{
+        display: flex;
+        max-width: 100%;
+
+        .casal-img{
+            width: 50%;
+            min-width: 50%;
+        }
     }
 }
