@@ -5,8 +5,7 @@ Este é um projeto feito para exercício pessoal de desenvolvimento utilizando o
 ## Funcionalidades
 
 - **Exibição de categorias de prêmios**: O projeto lista várias categorias de prêmios (como Melhor Anime, Melhor Personagem, etc.).
-- **Sistema de votação**: Usuários podem votar nos animes favoritos de cada categoria.
-- **Contagem de votos**: O sistema exibe a contagem atual dos votos para cada anime.
+- **Sistema de pontuação**: O sistema exibe a pontuação atual de para cada anime.
 - **Interface simples e responsiva**: A interface foi projetada para ser simples e adaptável a diferentes dispositivos.
 
 ## Tecnologias Utilizadas
@@ -18,7 +17,7 @@ Este é um projeto feito para exercício pessoal de desenvolvimento utilizando o
 
 - `src/`: Contém todos os arquivos de código fonte.
   - `app/`: Diretório principal com componentes, serviços e módulos.
-    - `components/`: Contém os componentes da interface, como a lista de categorias e o formulário de votação.
+    - `components/`: Contém os componentes da interface, como a lista de categorias e a lista de indicados.
     - `services/`: Serviços que fazem a chamada da [API](https://github.com/ThiagoCOliv/AnimeAwardsBackEnd/tree/main) utilizada.
     - `interfaces/`: Definições de modelos de dados, como os objetos de Anime e Categoria.
     - `pages/`: Contém os componentes utilizados como páginas da aplicação.
