@@ -5,11 +5,9 @@ Este é um projeto feito para exercício pessoal de desenvolvimento utilizando o
 ## Funcionalidades
 
 - **Exibição de categorias de prêmios**: O projeto lista várias categorias de prêmios (como Melhor Anime, Melhor Personagem, etc.).
-<<<<<<< HEAD
+
 - **Sistema de pontuação**: O sistema exibe a pontuação atual de para cada anime.
-=======
 - **Sistema de Pontuação**: O sistema exibe a pontuação atual de para cada anime.
->>>>>>> 50152f1201634bb23e7a4f734fb37b300199dc93
 - **Interface simples e responsiva**: A interface foi projetada para ser simples e adaptável a diferentes dispositivos.
 
 ## Tecnologias Utilizadas
