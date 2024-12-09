@@ -146,5 +146,10 @@ dialog{
 @media screen and (max-width: 600px) {
     section form{
         width: 90vw;
+
+        .form-group .input-add{
+            min-width: 100%;
+            gap: 0
+        }
     }
 }
