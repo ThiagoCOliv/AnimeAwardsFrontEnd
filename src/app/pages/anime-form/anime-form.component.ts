@@ -18,7 +18,19 @@ export class AnimeFormComponent
   generos: string[] = [];
   lancamento: string[] = [];
   funcaoPagina: string = "Adicionar";
-  animeAtualizado?: Anime;
+
+  animeAtualizado: Anime = {
+    id:0,
+    nome: '',
+    imagemURL: '',
+    temporadaAnime: 1,
+    temporadaLancamento: [],
+    estudio: [],
+    generos: [],
+    fonte: '',
+    pontos:0
+  };
+
   mensagem: string = "";
   statusRequisicao: string = ""
 
@@ -45,20 +57,23 @@ export class AnimeFormComponent
   @Input()
   set id(animeId: number) 
   {
-    this.service.getAnime(animeId).subscribe(res => 
+    if(animeId)
     {
-      this.animeAtualizado = res
-      this.estudios = res.estudio;
-      this.form.controls.estudios.setValue(res.estudio)
-      this.generos = res.generos;
-      this.form.controls.generos.setValue(res.generos)
-      this.form.controls.nome.setValue(res.nome)
-      this.form.controls.imagem.setValue(res.imagemURL)
-      this.form.controls.lancamento.setValue(res.temporadaLancamento)
-      this.form.controls.temporada.setValue(res.temporadaAnime)
-      this.form.controls.fonte.setValue(res.fonte)
-      this.funcaoPagina = "Editar"
-    });
+      this.service.getAnime(animeId).subscribe(res => 
+      {
+        this.animeAtualizado = res
+        this.estudios = res.estudio;
+        this.form.controls.estudios.setValue(res.estudio)
+        this.generos = res.generos;
+        this.form.controls.generos.setValue(res.generos)
+        this.form.controls.nome.setValue(res.nome)
+        this.form.controls.imagem.setValue(res.imagemURL)
+        this.form.controls.lancamento.setValue(res.temporadaLancamento)
+        this.form.controls.temporada.setValue(res.temporadaAnime)
+        this.form.controls.fonte.setValue(res.fonte)
+        this.funcaoPagina = "Editar"
+      });
+    }
   }
 
   deleteEstudio(estudio: string)
@@ -125,18 +140,18 @@ export class AnimeFormComponent
 
     if(this.form.valid && estudios?.length > 0 && generos?.length > 0 && this.lancamento.length > 0)
     {
-      let animeAtual = this.animeAtualizado
-      animeAtual!.estudio = this.form.value.estudios as string[];
-      animeAtual!.fonte = this.form.value.fonte as string;
-      animeAtual!.generos = this.form.value.generos as string[];
-      animeAtual!.imagemURL = this.form.value.imagem as string;
-      animeAtual!.nome = this.form.value.nome as string;
-      animeAtual!.temporadaAnime = this.form.value.temporada as number;
-      animeAtual!.temporadaLancamento = this.form.value.lancamento as string[];
+      let animeAtual: Anime = this.animeAtualizado
+      animeAtual.estudio = this.form.value.estudios as string[];
+      animeAtual.fonte = this.form.value.fonte as string;
+      animeAtual.generos = this.form.value.generos as string[];
+      animeAtual.imagemURL = this.form.value.imagem as string;
+      animeAtual.nome = this.form.value.nome as string;
+      animeAtual.temporadaAnime = this.form.value.temporada as number;
+      animeAtual.temporadaLancamento = this.form.value.lancamento as string[];
 
       this.funcaoPagina == "Adicionar" ? 
-        this.service.postAnime(animeAtual as Anime).subscribe(res => this.exibirStatusRequisicao(res)) : 
-        this.service.putAnime(animeAtual as Anime).subscribe(res => this.exibirStatusRequisicao(res))
+        this.service.postAnime(animeAtual).subscribe(res => this.exibirStatusRequisicao(res)) : 
+        this.service.putAnime(animeAtual).subscribe(res => this.exibirStatusRequisicao(res))
     }
   }
   
