@@ -17,15 +17,18 @@
         {
             <div class="form-group">
                 <label for="lancamento">Temporada Lançamento:</label>
-                <input type="text" name="lancamento" [formControl]="formList.controls.lancamento">
-            </div>
-            @if(lancamento){
-                <div class="lista-linha">
-                    @for (temporada of lancamento; track $index) {
-                        <span (click)="deleteTemporada(temporada)">{{ temporada }}</span>
-                    }
+                <div class="input-add">
+                    <input type="text" name="lancamento" [formControl]="formList.controls.lancamento">
+                    <span class="add" (click)="addTemporada()">+</span>
                 </div>
-            }
+                @if(lancamento){
+                    <div class="lista-linha">
+                        @for (temporada of lancamento; track $index) {
+                            <span (click)="deleteTemporada(temporada)">{{ temporada }}</span>
+                        }
+                    </div>
+                }
+            </div>
         }
         
         <div class="form-group">
