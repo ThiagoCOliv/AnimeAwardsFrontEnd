@@ -1,0 +1,14 @@
+<div>
+    @for(item of lista; track lista)
+    {
+        <span [class]="item.status" (click)="buscar(item)">{{ item.nome }}</span>
+    }
+</div>
+<button class="hamburger" (click)="toggleMenu()"></button>
+<ul [class]="status">
+    <li (click)="toggleMenu()">FECHAR</li>
+    @for(item of lista; track lista)
+    {
+        <li [class]="item.status" (click)="buscar(item)">{{ item.nome }}</li>
+    }
+</ul>
