@@ -1,0 +1,16 @@
+button{
+    background: var(--cor-primaria);
+    font-size: var(--font-size-standart);
+    padding: calc(var(--espacamento) * 0.5) 0;
+    border-radius: var(--espacamento-s);
+    border: none;
+    outline: none;
+    width: calc(var(--espacamento) * 3);
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover{
+        filter: brightness(1.2);
+        transform: scale(1.2);
+    }
+}
