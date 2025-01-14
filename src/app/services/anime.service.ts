@@ -23,10 +23,10 @@ export class AnimeService {
   }
 
   getAnimes<Anime>(genero: string = ""): Observable<Anime[]>{
-    return this.http.get<Anime[]>(this.base_url + `animes/${genero}`)
+    return this.http.get<Anime[]>(this.base_url + `animes/${genero != "" ? "?genero=" + genero : ""}`)
   }
 
-  getAnime(id: number): Observable<Anime>{
+  getAnime(id: number): Observable<any>{
     return this.http.get<Anime>(this.base_url + `animes/${id}`)
   }
 
