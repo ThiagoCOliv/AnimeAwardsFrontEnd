@@ -15,11 +15,50 @@
         flex-direction: column;
         gap: var(--espacamento);
 
-        & h1{
-            font-size: calc(var(--font-size-standart) * 2);
+        & .nome-id{
+            display: flex;
+            align-items: center;
 
-            & span{
-                color: var(--cor-primaria);
+            &.aoty-div {
+                width: fit-content;
+                align-items: flex-start;
+                flex-direction: column;
+                
+                & h1{
+                    padding-inline: var(--espacamento);
+                    border-bottom: 2px solid var(--cor-ouro);
+                    transition: all 0.3s ease;
+                }
+
+                & .aoty{
+                    display: block;
+                    padding: 0;
+                    font-size: var(--font-size-standart);
+                    background: var(--cor-ouro);
+                    color: var(--cor-cinza);
+                    font-weight: bold;
+                    width: 100%;
+                    height: 0;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    transition: all 0.3s ease;
+                }
+
+                &:hover{
+                    & .aoty{
+                        text-align: center;
+                        height: fit-content;
+                        padding: calc(var(--espacamento) * 0.5);
+                    }
+                }
+            }
+
+            & h1{
+                font-size: calc(var(--font-size-standart) * 2);
+    
+                & span{
+                    color: var(--cor-primaria);
+                }
             }
         }
 
@@ -34,6 +73,36 @@
                 flex-wrap: wrap;
                 gap: calc(var(--espacamento) * 0.5);
             }
+
+            &.vitorias{
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--espacamento);
+                
+                & li{
+                    background: var(--cor-cinza);
+                    transition: 0.3s ease;
+                    cursor: pointer;
+                    width:clamp(250px,20%,400px);
+                    display: grid;
+                    text-align: center;
+                    align-content: center;
+
+                    &:hover{
+                        background: var(--cor-primaria);
+                    }
+
+                    &.aoty{
+                        border: var(--espacamento-s) solid var(--cor-ouro);
+                        width: 100%;
+                        justify-content: center;
+                        font-size: calc(var(--font-size-standart) * 1.5);
+                        font-weight: bold;
+                        color: var(--cor-cinza);
+                        background: var(--cor-ouro);
+                    }
+                }
+            }
         }
 
         & .botoes{
@@ -45,7 +114,7 @@
             & button{
                 width: 200px;
                 padding: calc(var(--espacamento) * 0.5) var(--espacamento);
-                background: var(--cor-hover-2);
+                background: var(--cor-cinza);
                 border: none;
                 outline: none;
                 font-weight: bold;
@@ -58,17 +127,6 @@
 
                 &:hover, &:focus{
                     background: var(--cor-primaria);
-                }
-
-                &.excluir::after{
-                    content: 'X';
-                    padding: calc(var(--espacamento) * 0.2);
-                    width: var(--espacamento);
-                    border: 2px solid #fff;
-                    border-radius: 50%;
-                    aspect-ratio: 1;
-                    font-size: calc(var(--font-size-standart) * 0.5);
-                    align-content: center;
                 }
             }
         }
@@ -90,7 +148,21 @@
             h1{
                 text-align: center;
             }
+
+            & ul.vitorias{
+                justify-content: center;
+
+                li{
+                    width: 40%;
+                }
+            }
         }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .anime-page .anime-info ul.vitorias li{
+        width: 100%;
     }
 }
 

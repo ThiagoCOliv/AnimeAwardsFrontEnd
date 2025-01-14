@@ -2,7 +2,13 @@
     <div class="anime-page">
         <img [src]="anime.imagemURL"/>
         <div class="anime-info">
-            <h1>{{ anime.nome }} <span>#{{ anime.id }}</span></h1>
+            <div [class]="vitorias.length > 0 && vitorias[0].nome == 'Anime do Ano' ? 'nome-id aoty-div' : 'nome-id'">
+                <h1>{{ anime.nome }} <span>#{{ anime.id }}</span></h1>
+                @if(vitorias.length > 0 && vitorias[0].nome == "Anime do Ano")
+                {
+                    <span class="aoty">Anime do Ano</span>
+                }
+            </div>
             <ul>
                 <li>Temporada: <span>{{ anime.temporadaAnime }}</span></li>
                 <li>Lançamento: <span>{{ anime.temporadaLancamento }}</span></li>
@@ -25,8 +31,20 @@
                         <path d="M12 20h9M16 4l4 4-9 9H7v-4l9-9z" />
                     </svg>
                   </button>
-                <button class="excluir"><span>EXCLUIR</span></button>
             </div>
+            @if(vitorias.length > 0)
+            {
+                <h1>Vitórias</h1>
+                <ul class="vitorias">
+                    @for(vitoria of vitorias; track vitorias)
+                    {
+                        @if(vitoria.nome != "Anime do Ano")
+                        {
+                            <li (click)="verCategoria(vitoria.nome)">{{ vitoria.nome }}</li>
+                        }
+                    }
+                </ul>
+            }
         </div>
     </div>
 }
