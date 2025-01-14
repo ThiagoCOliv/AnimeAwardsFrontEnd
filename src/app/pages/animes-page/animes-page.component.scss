@@ -1,25 +1,11 @@
 div{
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--espacamento);
-    min-width: 250px;
+    justify-content: space-between;
 
-    & .titulo-pagina{
-        font-size: calc(var(--font-size-standart) * 2);
-        flex: 1;
-    }
-
-    & button{
-        background: var(--cor-primaria);
-        font-size: calc(var(--font-size-standart) * 2);
-        padding: calc(var(--espacamento) * 0.5);
-        border: none;
-        outline: none;
-        border-radius: 50%;
-        width: calc(var(--espacamento) * 3);
-        aspect-ratio: 1;
-        cursor: pointer;
+    & .generos{
+        overflow-x: auto;
     }
 }
 
@@ -39,14 +25,6 @@ div{
 }
 
 @media screen and (max-width: 1300px){
-    .titulo-pagina{
-        width: calc(100% - var(--espacamento) * 6);
-    }
-
-    app-select{
-        width: 100%;
-    }
-
     .lista-animes{
         grid-template-columns: repeat(3, 1fr);
     }
@@ -59,15 +37,6 @@ div{
 }
 
 @media screen and (max-width: 700px){
-    div .titulo-pagina{
-        font-size: calc(var(--font-size-standart) * 1.5);
-    }
-    
-    div button{
-        font-size: calc(var(--font-size-standart) * 1.5);
-        width: calc(var(--espacamento) * 2.5);
-    }
-    
     .lista-animes{
         grid-template-columns: 1fr;
 
@@ -79,15 +48,6 @@ div{
 }
 
 @media screen and (max-width: 420px){
-    div .titulo-pagina{
-        font-size: calc(var(--font-size-standart) * 1.2);
-    }
-
-    div button{
-        font-size: calc(var(--font-size-standart) * 1);
-        width: calc(var(--espacamento) * 2);
-    }
-    
     .lista-animes{
         & li{
             width: calc(100vw - var(--espacamento) * 4);

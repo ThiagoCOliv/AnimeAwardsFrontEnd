@@ -1,7 +1,6 @@
-<div>
-    <h1 class="titulo-pagina">Animes</h1>
-    <button (click)="onAdd()">+</button>
-    <app-select label="Generos:" [opcoes]="generos" (search)="buscarPorGenero($event)"></app-select>
+<div class="top-bar">
+    <div class="generos"><app-barra-abas [lista]="generos" (click)="buscarPorGenero($event)"></app-barra-abas></div>
+    <app-btn-add (click)="onAdd()"></app-btn-add>
 </div>
 <ul class="lista-animes">
     @for (anime of animes; track anime.id)

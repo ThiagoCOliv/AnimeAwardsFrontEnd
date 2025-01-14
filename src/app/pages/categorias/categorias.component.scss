@@ -1,16 +1,3 @@
-div{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--espacamento);
-    min-width: 250px;
-
-    & .titulo-pagina{
-        font-size: calc(var(--font-size-standart) * 2);
-        flex: 1;
-    }
-}
-
 .lista-categorias{
     list-style: none;
     font-size: calc(var(--font-size-standart) * 0.75);

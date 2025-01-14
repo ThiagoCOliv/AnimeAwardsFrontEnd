@@ -1,7 +1,4 @@
-<div>
-    <h1 class="titulo-pagina">Categorias</h1>
-    <app-select label="Tipos:" [opcoes]="tipos()" (search)="buscarPorTipo($event)"></app-select>
-</div>
+<app-barra-abas [lista]="tipos" (click)="buscarPorTipo($event)"></app-barra-abas>
 <ul class="lista-categorias">
     @for (categoria of categorias; track $index)
     {

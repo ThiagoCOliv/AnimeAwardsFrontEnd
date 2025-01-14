@@ -1,20 +1,22 @@
-import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Anime } from '../../interfaces/anime.interface';
 import { CardAnimeComponent } from "../../components/card-anime/card-anime.component";
 import { AnimeService } from '../../services/anime.service';
-import { SelectComponent } from "../../components/select/select.component";
 import { Router } from '@angular/router';
+import { BtnAddComponent } from "../../components/btn-add/btn-add.component";
+import { BarraAbasComponent } from "../../components/barra-abas/barra-abas.component";
 
 @Component({
     selector: 'app-animes-page',
     standalone: true,
     templateUrl: './animes-page.component.html',
     styleUrl: './animes-page.component.scss',
-    imports: [CardAnimeComponent, SelectComponent]
+    imports: [CardAnimeComponent, BtnAddComponent, BarraAbasComponent]
 })
 export class AnimesPageComponent implements OnInit{
   animes: Anime[] = [];
   generos: any[] = [];
+  generosAtivos: any[] = [];
 
   router = inject(Router)
 
@@ -22,30 +24,50 @@ export class AnimesPageComponent implements OnInit{
 
   ngOnInit(): void 
   {
-    this.service.getAnimes<Anime>().subscribe(res => this.animes = res);
-    this.generos = this.verificarGeneros(this.animes.map<string[]>(anime => anime.generos))
+    this.service.getAnimes<Anime>().subscribe(res => {
+      this.animes = res;
+      this.generos = this.verificarGeneros(this.animes.map<string[]>(anime => anime.generos));
+      this.generosAtivos = this.generos;
+    });
   }
 
-  verificarGeneros(lista: any[]){
-    let novaLista: string[] = [];
+  verificarGeneros(listaGenerosPorAnime: any[])
+  {
+    let novaLista: any[] = [];
 
-    lista.forEach(item => {
-      if(item.includes(' - '))
+    listaGenerosPorAnime.forEach(generos => generos.forEach((genero: string) => {
+      let objGenero = {
+        id: novaLista.length,
+        nome: genero,
+        status: "desmarcado"
+      }
+
+      if(novaLista.length == 0 || !novaLista.some(item => item.nome == genero))
       {
-        const generos = item.split(' - ');
-        generos.forEach((genero: string) => novaLista.push(genero))
+        novaLista.push(objGenero)
+      }
+    }))
+    
+    return novaLista
+  }
+
+  buscarPorGenero(genero: any)
+  {
+    if(genero.status)
+    {
+      if(genero.status == "marcado")
+      {
+        this.generos.forEach(gen => gen.status = "desmarcado")
+        this.generosAtivos = this.generos;
       }
       else
       {
-        novaLista.push(item)
+        this.generos.forEach(gen => gen.status = gen.nome == genero.nome ? "marcado" : "desmarcado")
+        this.generosAtivos = [genero];
       }
-    })
-    
-    return [...new Set(novaLista)]
-  }
-
-  buscarPorGenero(genero: string){
-    this.service.getAnimes<Anime>(genero).subscribe(res => this.animes = res);
+  
+      this.service.getAnimes<Anime>(this.generosAtivos.length == 1 ? genero.nome : "").subscribe(res => this.animes = res)
+    }
   }
 
   onAdd(){
