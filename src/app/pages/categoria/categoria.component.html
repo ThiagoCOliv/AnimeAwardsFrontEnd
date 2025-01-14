@@ -3,7 +3,7 @@
         {{ categoria.nome }}
         @if(podeAddManualmente)
         {
-            <button class="btn-add-indicado" (click)="abrirModalAddIndicado()">+</button>
+            <app-btn-add (click)="abrirModalAddIndicado()"></app-btn-add>
         }
     </h1>
     <ul class="lista-indicados">
@@ -56,7 +56,7 @@
     </ul>
 }
 
-@if (alteracao) 
+@if (alteracao || mensagem != "") 
 {
     <div class="btn-editar-div">
         @if (mensagem) {

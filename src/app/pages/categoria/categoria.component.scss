@@ -4,27 +4,6 @@ h1{
     justify-content: space-between;
     align-items: center;
     gap: var(--espacamento);
-
-    button{
-        border-radius: 50%;
-        aspect-ratio: 1;
-        width: fit-content;
-        font-size: var(--font-size-standart);
-        padding: calc(var(--espacamento) * 0.7);
-        font-weight: bold;
-    }
-}
-
-.btn-add-indicado{
-    padding: calc(var(--espacamento) * 0.5);
-    border: none;
-    background: var(--cor-primaria);
-    cursor: pointer;
-    transition: 0.3s ease;
-
-    &:hover{
-        filter: brightness(1.2);
-    }
 }
 
 .lista-indicados{
@@ -115,7 +94,7 @@ h1{
         }
 
         &:nth-child(even){
-            background: var(--cor-hover-2);
+            background: var(--cor-cinza);
         }
     }
 }
@@ -201,9 +180,5 @@ dialog{
 @media screen and (max-width: 500px){
     h1{
         font-size: calc(var(--font-size-standart) * 1.2);
-
-        button{
-            padding: calc(var(--espacamento) * 0.5);
-        }
     }
 }
