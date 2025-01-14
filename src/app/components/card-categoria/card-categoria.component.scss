@@ -1,6 +1,7 @@
 .card-categoria{
-    border: 2px solid var(--cor-primaria);
-    border-radius: var(--espacamento);
+    background: var(--cor-cinza);
+    border: 2px solid var(--cor-hover);
+    border-radius: calc(var(--espacamento-s) * 2);
     padding: var(--espacamento);
     height: 100%;
     display: flex;
@@ -12,7 +13,8 @@
     cursor: pointer;
 
     &:hover{
-        background: linear-gradient(30deg, transparent 25%, var(--cor-primaria));
+        border-color: var(--cor-primaria);
+        box-shadow: var(--espacamento-s) var(--espacamento-s) calc(var(--espacamento-s) * 3) var(--cor-primaria);
     }
 
     img{
