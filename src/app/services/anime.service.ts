@@ -11,19 +11,13 @@ export class AnimeService {
   private base_url = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
-  getTopTen<Anime>()
+  getTopTen<Anime>(): Observable<any>
   {
-    let animes: Anime[] = [];
-
-    this.http.get<Anime[]>(this.base_url + 'animes/top').subscribe(lista => {
-      lista.forEach(item => animes.push(item))
-    })
-
-    return animes;
+    return this.http.get<Anime[]>(this.base_url + 'animes/top');
   }
 
   getAnimes<Anime>(genero: string = ""): Observable<Anime[]>{
-    return this.http.get<Anime[]>(this.base_url + `animes/${genero != "" ? "?genero=" + genero : ""}`)
+    return this.http.get<Anime[]>(this.base_url + `animes${genero != "" ? "?genero=" + genero : ""}`)
   }
 
   getAnime(id: number): Observable<any>{
