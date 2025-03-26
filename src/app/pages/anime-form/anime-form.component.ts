@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Anime } from '../../interfaces/anime.interface';
 import { AnimeService } from '../../services/anime.service';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component
 ({
@@ -34,7 +35,7 @@ export class AnimeFormComponent
   mensagem: string = "";
   statusRequisicao: string = ""
 
-  constructor(private service:AnimeService){}
+  constructor(private readonly service: AnimeService, private readonly router: Router){}
 
   form = new FormGroup
   ({
@@ -100,11 +101,10 @@ export class AnimeFormComponent
 
     if(value)
     {
-      this.estudios.push(value);
+      this.estudios.push(this.capitalize(value));
       this.form.controls.estudios.setValue(this.estudios);
       this.formList.controls.estudio.setValue('')
     }
-    
   }
   
   addGenero()
@@ -113,7 +113,7 @@ export class AnimeFormComponent
 
     if(value)
     {
-      this.generos.push(value);
+      this.generos.push(this.capitalize(value));
       this.form.controls.generos.setValue(this.generos)
       this.formList.controls.genero.setValue('')
     }
@@ -126,7 +126,7 @@ export class AnimeFormComponent
 
     if(value)
     {
-      this.lancamento.push(value);
+      this.lancamento.push(this.capitalize(value));
       this.form.controls.lancamento.setValue(this.lancamento);
       this.formList.controls.lancamento.setValue('')
     }
@@ -150,7 +150,7 @@ export class AnimeFormComponent
       animeAtual.temporadaLancamento = this.form.value.lancamento as string[];
 
       this.funcaoPagina == "Adicionar" ? 
-        this.service.postAnime(animeAtual).subscribe(res => this.exibirStatusRequisicao(res)) : 
+        this.service.postAnime(animeAtual).subscribe(res => res.status == 201 ? this.router.navigate(['animes']) : this.exibirStatusRequisicao(res)) : 
         this.service.putAnime(animeAtual).subscribe(res => this.exibirStatusRequisicao(res))
     }
   }
@@ -165,5 +165,13 @@ export class AnimeFormComponent
       this.statusRequisicao = ""
       this.mensagem = "";
     }, 3000)
+  }
+
+  capitalize(texto: String)
+  {
+    return texto.split(' ').map(palavra => {
+      const minusculo = palavra.toLowerCase();
+      return minusculo.length > 2 ? minusculo.charAt(0).toUpperCase() + minusculo.slice(1) : minusculo;
+    }).join(' ');
   }
 }

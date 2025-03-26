@@ -2,12 +2,8 @@
     <div class="generos"><app-barra-abas [lista]="generos" (click)="buscarPorGenero($event)"></app-barra-abas></div>
     <app-btn-add (click)="onAdd()"></app-btn-add>
 </div>
+
 <ul class="lista-animes">
-    @for (anime of animes; track anime.id)
-    {
-        <li class="anime-card"><app-card-anime [anime]="anime" [pagina]="'animes'"></app-card-anime></li>
-    }
-    @empty {
-        <li class="lista-vazia">Não foram encontrados animes :(</li>
-    }
+    @for (anime of animes; track anime.id) { <li class="anime-card"><app-card-anime [anime]="anime" [pagina]="'animes'"></app-card-anime></li> }
+    @empty { <li class="lista-vazia">Não foram encontrados animes :(</li> }
 </ul>

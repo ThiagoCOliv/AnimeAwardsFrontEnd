@@ -26,8 +26,12 @@ export class AnimesPageComponent implements OnInit{
   {
     this.service.getAnimes<Anime>().subscribe(res => {
       this.animes = res;
-      this.generos = this.verificarGeneros(this.animes.map<string[]>(anime => anime.generos));
-      this.generosAtivos = this.generos;
+      
+      if(this.animes.length > 0)
+      {
+        this.generos = this.verificarGeneros(this.animes.map<string[]>(anime => anime.generos));
+        this.generosAtivos = this.generos;
+      }
     });
   }
 
@@ -42,10 +46,7 @@ export class AnimesPageComponent implements OnInit{
         status: "desmarcado"
       }
 
-      if(novaLista.length == 0 || !novaLista.some(item => item.nome == genero))
-      {
-        novaLista.push(objGenero)
-      }
+      if(novaLista.length == 0 || !novaLista.some(item => item.nome == genero)) novaLista.push(objGenero);
     }))
     
     return novaLista
@@ -65,12 +66,10 @@ export class AnimesPageComponent implements OnInit{
         this.generos.forEach(gen => gen.status = gen.nome == genero.nome ? "marcado" : "desmarcado")
         this.generosAtivos = [genero];
       }
-  
+      
       this.service.getAnimes<Anime>(this.generosAtivos.length == 1 ? genero.nome : "").subscribe(res => this.animes = res)
     }
   }
 
-  onAdd(){
-    this.router.navigateByUrl(`add-anime`)
-  }
+  onAdd(){ this.router.navigateByUrl(`add-anime`) }
 }
