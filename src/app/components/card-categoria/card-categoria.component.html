@@ -1,23 +1,26 @@
 <div class="card-categoria">
     <h2>{{ categoria?.nome }}</h2>
-    @if(categoria?.tipo == "Personagens")
+    @if(categoria?.indicados!.length > 0)
     {
-        @if (categoria?.nome != "Melhor Casal") 
+        @if(categoria?.tipo == "Personagens")
         {
-            <img [src]="categoria?.indicados![0].imagem" [alt]="categoria?.indicados![0].personagem">
-            <h3>{{ categoria?.indicados![0].personagem }}</h3>
+            @if (categoria?.nome != "Melhor Casal") 
+            {
+                <img [src]="categoria?.indicados![0].imagem" [alt]="categoria?.indicados![0].personagem">
+                <h3>{{ categoria?.indicados![0].personagem }}</h3>
+            }
+            @else 
+            {
+                <div class="casal">
+                    <img class="casal-img" [src]="categoria?.indicados![0].imagemA" [alt]="categoria?.indicados![0].casal?.split(' - ')![0]">
+                    <img class="casal-img" [src]="categoria?.indicados![0].imagemB" [alt]="categoria?.indicados![0].casal?.split(' - ')![1]">
+                </div>
+                <h3>{{ categoria?.indicados![0].casal }}</h3>
+            }
         }
-        @else 
-        {
-            <div class="casal">
-                <img class="casal-img" [src]="categoria?.indicados![0].imagemA" [alt]="categoria?.indicados![0].casal?.split(' - ')![0]">
-                <img class="casal-img" [src]="categoria?.indicados![0].imagemB" [alt]="categoria?.indicados![0].casal?.split(' - ')![1]">
-            </div>
-            <h3>{{ categoria?.indicados![0].casal }}</h3>
+        @else {
+            <img [src]="categoria?.indicados![0].anime.imagemURL" [alt]="categoria?.indicados![0].anime.nome">
+            <h3>{{ categoria?.indicados![0].anime.nome }}</h3>
         }
-    }
-    @else {
-        <img [src]="categoria?.indicados![0].anime.imagemURL" [alt]="categoria?.indicados![0].anime.nome">
-        <h3>{{ categoria?.indicados![0].anime.nome }}</h3>
     }
 </div>
