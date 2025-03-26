@@ -13,5 +13,6 @@ export const routes: Routes = [
     { path: 'anime/:id', component: AnimeComponent },
     { path: 'categoria/:nome', component: CategoriaComponent },
     { path: 'add-anime', component: AnimeFormComponent },
-    { path: 'edit-anime/:id', component: AnimeFormComponent }
+    { path: 'edit-anime/:id', component: AnimeFormComponent },
+    { path: '**', redirectTo: '' }
 ];
