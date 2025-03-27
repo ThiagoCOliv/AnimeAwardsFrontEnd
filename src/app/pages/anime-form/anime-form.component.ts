@@ -62,17 +62,18 @@ export class AnimeFormComponent
     {
       this.service.getAnime(animeId).subscribe(res => 
       {
-        this.animeAtualizado = res
-        this.estudios = res.estudio;
-        this.form.controls.estudios.setValue(res.estudio)
-        this.generos = res.generos;
-        this.form.controls.generos.setValue(res.generos)
-        this.form.controls.nome.setValue(res.nome)
-        this.form.controls.imagem.setValue(res.imagemURL)
-        this.form.controls.lancamento.setValue(res.temporadaLancamento)
-        this.form.controls.temporada.setValue(res.temporadaAnime)
-        this.form.controls.fonte.setValue(res.fonte)
-        this.funcaoPagina = "Editar"
+        this.animeAtualizado = res.anime;
+        this.estudios = res.anime.estudio;
+        this.form.controls.estudios.setValue(res.anime.estudio);
+        this.generos = res.anime.generos;
+        this.form.controls.generos.setValue(res.anime.generos);
+        this.form.controls.nome.setValue(res.anime.nome);
+        this.form.controls.imagem.setValue(res.anime.imagemURL);
+        this.form.controls.lancamento.setValue([res.anime.temporadaLancamento]);
+        this.lancamento = [res.anime.temporadaLancamento];
+        this.form.controls.temporada.setValue(res.anime.temporadaAnime);
+        this.form.controls.fonte.setValue(res.anime.fonte);
+        this.funcaoPagina = "Editar";
       });
     }
   }
@@ -148,10 +149,10 @@ export class AnimeFormComponent
       animeAtual.nome = this.form.value.nome as string;
       animeAtual.temporadaAnime = this.form.value.temporada as number;
       animeAtual.temporadaLancamento = this.form.value.lancamento as string[];
-
+      
       this.funcaoPagina == "Adicionar" ? 
         this.service.postAnime(animeAtual).subscribe(res => res.status == 201 ? this.router.navigate(['animes']) : this.exibirStatusRequisicao(res)) : 
-        this.service.putAnime(animeAtual).subscribe(res => this.exibirStatusRequisicao(res))
+        this.service.putAnime(animeAtual).subscribe(res => res.status == 201 ? this.router.navigate([`anime/${animeAtual.id}`]) : this.exibirStatusRequisicao(res))
     }
   }
   
@@ -159,7 +160,7 @@ export class AnimeFormComponent
   {
     this.mensagem = resposta.body.mensagem;
 
-    this.statusRequisicao = resposta.status == 201 ? "sucesso" : "erro"
+    this.statusRequisicao = "erro"
 
     setTimeout(() => {
       this.statusRequisicao = ""
