@@ -99,7 +99,7 @@ export class CategoriaComponent {
     else if(indicado != 'cancel' && indicado)
     {
       this.indService.postIndicado(indicado as Indicado, this.categoria).subscribe(res => {
-        res.status == 201 ? this.indicados.push(indicado as Indicado) : ""
+        res.status == 201 ? this.indicados = res.body.categoria.indicados : ""
         this.exibirRespostaReq(res)
       })
     }

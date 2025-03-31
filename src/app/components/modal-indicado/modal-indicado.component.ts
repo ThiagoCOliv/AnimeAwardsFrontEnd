@@ -75,7 +75,7 @@ export class ModalIndicadoComponent {
         let novoIndicado: Indicado = {
           anime: this.animeSelecionado,
           numero: this.form.controls.numero.value as number,
-          pontos: 0
+          pontos: this.categoria.indicados.length > 9 ? 0 : 10 - this.categoria.indicados.length
         }
 
         this.adicionar.emit(novoIndicado)
