@@ -9,7 +9,13 @@
     <ul class="lista-indicados">
         @for(indicado of indicados; track $index)
         {
-            <li>
+            <li draggable="true"
+                (dragstart)="onDragStart($event, $index)"
+                (dragover)="onDragOver($event, $index)"
+                (drop)="onDrop($event, $index)"
+                (dragend)="onDragEnd()"
+                [class.drag-over]="dragOverIndex === $index"
+                [class.dragging]="dragSrcIndex === $index">
                 <span class="posicao">{{ $index + 1 }}</span>
                 <div class="indicado">
                     @if (categoria.tipo == "Personagens") 
@@ -44,12 +50,7 @@
                 </div>
  
                 <div class="botoes">
-                    @if ($index != 0) {
-                        <button class="subir" (click)="onSubir($index)"></button>
-                    }
-                    @if ($index < categoria.indicados.length -1) {
-                        <button class="descer" (click)="onDescer($index)"></button>
-                    }
+                    <button class="drag-handle" title="Arraste para reordenar" aria-label="Arraste para reordenar" draggable="false">☰</button>
                 </div>
             </li>
         }

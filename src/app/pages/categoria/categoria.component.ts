@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 import { IndicadoService } from '../../services/indicado.service';
 import { Categoria } from '../../interfaces/categoria.interface';
@@ -24,6 +24,8 @@ export class CategoriaComponent {
   modalAberto: boolean = false;
 
   alteracao = false;
+  dragSrcIndex: number | null = null;
+  dragOverIndex: number | null = null;
 
   @Input()
   set nome(categoriaNome: string) {
@@ -38,6 +40,45 @@ export class CategoriaComponent {
       this.indicados = [...res.indicados];
       this.podeAddManualmente = this.podeAddIndicado(this.categoria);
     });
+  }
+
+  onDragStart(event: DragEvent, index: number){
+    this.dragSrcIndex = index;
+    try{ event.dataTransfer?.setData('text/plain', String(index)); } catch(e){}
+    if(event.dataTransfer){ event.dataTransfer.effectAllowed = 'move'; }
+  }
+
+  onDragOver(event: DragEvent, index: number){
+    event.preventDefault();
+    this.dragOverIndex = index;
+    if(event.dataTransfer){ event.dataTransfer.dropEffect = 'move'; }
+  }
+
+  onDrop(event: DragEvent, dropIndex: number){
+    event.preventDefault();
+    const src = this.dragSrcIndex ?? parseInt(event.dataTransfer?.getData('text/plain') || '-1');
+    if(src < 0) { this.resetDrag(); return; }
+    if(src === dropIndex){ this.resetDrag(); return; }
+
+    this.moveItem(src, dropIndex);
+    this.alteracao = this.compararIndicados(this.indicados);
+    this.resetDrag();
+  }
+
+  onDragEnd(){
+    this.resetDrag();
+  }
+
+  moveItem(fromIndex: number, toIndex: number){
+    const arr = [...this.indicados];
+    const [moved] = arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, moved);
+    this.indicados = arr;
+  }
+
+  resetDrag(){
+    this.dragSrcIndex = null;
+    this.dragOverIndex = null;
   }
 
   onSubir(index: number){
@@ -88,6 +129,7 @@ export class CategoriaComponent {
   abrirModalAddIndicado()
   {
     this.modalAberto = true;
+    try{ document.body.style.overflow = 'hidden'; } catch(e){}
   }
 
   addIndicado(indicado: Indicado | string)
@@ -105,6 +147,11 @@ export class CategoriaComponent {
     }
 
     this.modalAberto = false;
+    try{ document.body.style.overflow = ''; } catch(e){}
+  }
+
+  ngOnDestroy(): void {
+    try{ document.body.style.overflow = ''; } catch(e){}
   }
 
   podeAddIndicado(categoria: Categoria): boolean

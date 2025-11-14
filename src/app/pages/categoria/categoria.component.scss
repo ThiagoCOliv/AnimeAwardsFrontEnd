@@ -27,6 +27,16 @@ h1{
             left: 0;
         }
 
+        &.drag-over{
+            outline: 3px dashed var(--cor-primaria);
+            background: rgba(0,0,0,0.04);
+        }
+
+        &.dragging{
+            opacity: 0.6;
+            transform: scale(0.995);
+        }
+
         & div{
             display: flex;
             align-items: center;
@@ -78,18 +88,31 @@ h1{
                 & button{
                     width: calc(var(--espacamento) * 2);
                     height: var(--espacamento);
-                    clip-path: polygon(50% 0, 100% 100%, 0 100%);
                     background: #fff7;
                     transition: 0.3s ease;
 
                     &.descer{
                         rotate: 180deg;
                     }
-
-                    &:hover{
-                        background: var(--cor-primaria);
-                    }
                 }
+            }
+
+            &.botoes{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .drag-handle{
+                    cursor: grab;
+                    border: none;
+                    background: transparent;
+                    font-size: calc(var(--font-size-standart) * 1.2);
+                    padding: calc(var(--espacamento) * 0.25);
+                    color: var(--cor-primaria);
+                    transition: transform 0.12s ease, opacity 0.12s ease;
+                }
+
+                .drag-handle:active{ cursor: grabbing; transform: scale(0.98); }
             }
         }
 
@@ -134,15 +157,23 @@ h1{
 }
 
 dialog{
-    position: absolute;
-    max-width:80%;
-    min-width: 300px;
-    margin: auto;
-    top:10vh;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1000px, 90vw);
+    min-width: 320px;
+    max-height: 80vh;
+    margin: 0 auto;
+    top: 8vh;
     padding: var(--espacamento);
-    box-shadow: 0 0 0 9000em #000a;
-    overflow: hidden;
-    z-index: 2;
+    box-shadow: 0 0 0 9000em rgba(0,0,0,0.66);
+    overflow-y: auto;
+    z-index: 100000;
+}
+
+dialog::backdrop{
+    background: rgba(0,0,0,0.66);
+    z-index: 99999;
 }
 
 @media screen and (max-width: 1000px){
