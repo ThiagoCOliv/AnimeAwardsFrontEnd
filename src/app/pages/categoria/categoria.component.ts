@@ -92,7 +92,15 @@ export class CategoriaComponent {
   }
 
   onEditar(){
-    this.catService.putCategory(this.categoria, this.indicados).subscribe(res => this.exibirRespostaReq(res))
+    this.catService.putCategory(this.categoria, this.atualizarPontos(this.indicados)).subscribe(res => this.exibirRespostaReq(res))
+  }
+
+  atualizarPontos(indicados: Indicado[]): Indicado[] {
+    return indicados.map((indicado, index) => ({
+        ...indicado,
+        pontos: index >= 10 ? 0 : 10 - index
+      }
+    ));
   }
 
   atualizarIndicados(ascendidoIndex: number, rebaixadoIndex: number):Indicado[]
